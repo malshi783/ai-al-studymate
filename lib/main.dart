@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      // First screen of the application
       home: const SplashScreen(),
     );
   }
@@ -38,8 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Wait 3 seconds and then move to Welcome Screen
     Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const WelcomeScreen()),
@@ -55,14 +54,11 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.menu_book, size: 70, color: Colors.green),
-
             const Text(
               "AI A/L StudyMate",
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
-
             const SizedBox(height: 10),
-
             const Text(
               "Plan Smarter. Study Better.",
               style: TextStyle(fontSize: 16),
@@ -92,17 +88,13 @@ class WelcomeScreen extends StatelessWidget {
               "Welcome to the AI A/L StudyMate",
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
-
             const SizedBox(height: 15),
-
             const Text(
               "Your Smart Study Companion",
               style: TextStyle(fontSize: 16),
             ),
-
             const SizedBox(height: 30),
 
-            // Go to Login Screen
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -131,7 +123,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // Controllers store the text entered by the user
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
@@ -140,13 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Login")),
-
       body: Padding(
         padding: const EdgeInsets.all(20),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
             const Text(
               "Login to StudyMate",
@@ -155,10 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
-            // Email field
             TextField(
               controller: emailController,
-
               decoration: const InputDecoration(
                 labelText: "Email",
                 border: OutlineInputBorder(),
@@ -167,13 +153,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
-            // Password field
             TextField(
               controller: passwordController,
-
-              // Hide the password characters
               obscureText: true,
-
               decoration: const InputDecoration(
                 labelText: "Password",
                 border: OutlineInputBorder(),
@@ -182,24 +164,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
-            // Login button
             ElevatedButton(
               onPressed: () {
-                // Check whether email is empty
                 if (emailController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Email is Required")),
                   );
-
-                  // Check whether password is empty
                 } else if (passwordController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Password is Required")),
                   );
-
-                  // If both fields have values
                 } else {
-                  // Go to Dashboard
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -208,13 +183,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 }
               },
-
               child: const Text("Login"),
             ),
 
             const SizedBox(height: 15),
 
-            // Go to Register Screen
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -224,7 +197,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 );
               },
-
               child: const Text("Don't Have an Account? Register"),
             ),
           ],
@@ -246,7 +218,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // Controllers for Register fields
   final TextEditingController nameController = TextEditingController();
 
   final TextEditingController emailController = TextEditingController();
@@ -260,13 +231,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Register")),
-
       body: Padding(
         padding: const EdgeInsets.all(20),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
             const Text(
               "Create Your Account",
@@ -275,10 +243,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             const SizedBox(height: 15),
 
-            // Name field
             TextField(
               controller: nameController,
-
               decoration: const InputDecoration(
                 labelText: "Name",
                 border: OutlineInputBorder(),
@@ -287,10 +253,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             const SizedBox(height: 15),
 
-            // Email field
             TextField(
               controller: emailController,
-
               decoration: const InputDecoration(
                 labelText: "Email",
                 border: OutlineInputBorder(),
@@ -299,12 +263,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             const SizedBox(height: 15),
 
-            // Password field
             TextField(
               controller: passwordController,
-
               obscureText: true,
-
               decoration: const InputDecoration(
                 labelText: "Password",
                 border: OutlineInputBorder(),
@@ -313,62 +274,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             const SizedBox(height: 15),
 
-            // Confirm password field
             TextField(
               controller: confirmPasswordController,
-
               obscureText: true,
-
               decoration: const InputDecoration(
                 labelText: "Confirm Password",
                 border: OutlineInputBorder(),
               ),
             ),
 
-            // Register button
+            const SizedBox(height: 15),
+
             ElevatedButton(
               onPressed: () {
-                // Check name
                 if (nameController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Name is Required")),
                   );
-
-                  // Check email
                 } else if (emailController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Email is Required")),
                   );
-
-                  // Check password
                 } else if (passwordController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Password is Required")),
                   );
-
-                  // Check confirm password
                 } else if (confirmPasswordController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text("Confirm Password is Required"),
                     ),
                   );
-
-                  // Check whether passwords match
                 } else if (passwordController.text !=
                     confirmPasswordController.text) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Password do not match")),
                   );
-
-                  // Registration successful
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Registration Successful")),
                   );
 
-                  // After 1 second, go to Login Screen
                   Future.delayed(const Duration(seconds: 1), () {
+                    if (!mounted) return;
+
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -378,7 +327,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   });
                 }
               },
-
               child: const Text("Register"),
             ),
           ],
@@ -418,8 +366,142 @@ class DashboardScreen extends StatelessWidget {
               "Let's Start Your Study Journey.",
               style: TextStyle(fontSize: 16),
             ),
+
+            const SizedBox(height: 25),
+
+            // Today's Focus Card
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  children: [
+                    const Text(
+                      "Today's Focus",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    const Text("Mathematics", style: TextStyle(fontSize: 18)),
+
+                    const SizedBox(height: 8),
+
+                    const Text(
+                      "Complete 2 tasks Today",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            // Subjects heading
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SubjectsScreen(),
+                  ),
+                );
+              },
+
+              child: const Text(
+                "Subjects",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // Accounting
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.menu_book),
+                title: const Text("Accounting"),
+                subtitle: const Text("Practice Past Papers"),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Business Studies
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.business),
+                title: const Text("Business Studies"),
+                subtitle: const Text("Review lessons and notes"),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Economics
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.trending_up),
+                title: const Text("Economics"),
+                subtitle: const Text("Practice questions"),
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// --------------------------------------------------
+// Subjects Screen
+// --------------------------------------------------
+
+class SubjectsScreen extends StatelessWidget {
+  const SubjectsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Subjects")),
+
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.menu_book),
+              title: const Text("Accounting"),
+              subtitle: const Text("Practice Past Papers"),
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.business),
+              title: const Text("Business Studies"),
+              subtitle: const Text("Review lessons and notes"),
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.trending_up),
+              title: const Text("Economics"),
+              subtitle: const Text("Practice questions"),
+            ),
+          ),
+        ],
       ),
     );
   }
