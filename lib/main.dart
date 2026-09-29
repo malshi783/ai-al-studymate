@@ -479,6 +479,15 @@ class SubjectsScreen extends StatelessWidget {
               leading: const Icon(Icons.menu_book),
               title: const Text("Accounting"),
               subtitle: const Text("Practice Past Papers"),
+
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AccountingScreen(),
+                  ),
+                );
+              },
             ),
           ),
 
@@ -489,6 +498,15 @@ class SubjectsScreen extends StatelessWidget {
               leading: const Icon(Icons.business),
               title: const Text("Business Studies"),
               subtitle: const Text("Review lessons and notes"),
+
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BusinessStudiesScreen(),
+                  ),
+                );
+              },
             ),
           ),
 
@@ -499,9 +517,69 @@ class SubjectsScreen extends StatelessWidget {
               leading: const Icon(Icons.trending_up),
               title: const Text("Economics"),
               subtitle: const Text("Practice questions"),
+
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EconomicsScreen(),
+                  ),
+                );
+              },
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AccountingScreen extends StatelessWidget {
+  const AccountingScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Accounting")),
+      body: const Center(
+        child: Text(
+          "Accounting",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
+class BusinessStudiesScreen extends StatelessWidget {
+  const BusinessStudiesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Business Studies")),
+      body: const Center(
+        child: Text(
+          "Business Studies",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
+class EconomicsScreen extends StatelessWidget {
+  const EconomicsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Economics")),
+      body: const Center(
+        child: Text(
+          "Economics",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
