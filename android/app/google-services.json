@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "301985560998",
+    "project_id": "ai-al-studymate",
+    "storage_bucket": "ai-al-studymate.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301985560998:android:71e1ef7211101b16aff767",
+        "android_client_info": {
+          "package_name": "com.example.ai_al_studymate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrmmOsKtDOLrY606dR6gZKgSUQqdp9FzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

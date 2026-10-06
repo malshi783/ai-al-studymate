@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'subjects_screen.dart';
 import 'tasks_screen.dart';
 import 'timetable_screen.dart';
+import 'past_papers_screen.dart';
+import 'exam_countdown_screen.dart';
+import 'profile_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -11,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("StudyMate")),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,6 +140,77 @@ class DashboardScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
+            const SizedBox(height: 20),
+            //Past Papers
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PastPapersScreen(),
+                  ),
+                );
+              },
+              child: Card(
+                child: ListTile(
+                  leading: const Icon(Icons.menu_book, size: 30),
+                  title: const Text(
+                    "PastPapers",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text("Practice Previous Past Papers"),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Exam Countdown
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExamCountdownScreen(),
+                  ),
+                );
+              },
+              child: Card(
+                child: ListTile(
+                  leading: const Icon(Icons.timer, size: 30),
+                  title: const Text(
+                    "A/L Exam Countdown",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text("Check how many days are left"),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Card(
+                child: ListTile(
+                  leading: const Icon(Icons.person, size: 30),
+                  title: const Text(
+                    "My Profile",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text("View your student Profile"),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
