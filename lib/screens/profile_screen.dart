@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Profile")),
       body: Padding(
@@ -13,8 +17,8 @@ class ProfileScreen extends StatelessWidget {
           children: [
             const CircleAvatar(radius: 50, child: Icon(Icons.person, size: 50)),
             const SizedBox(height: 20),
-            const Text(
-              "Student Name",
+            Text(
+              user?.displayName ?? "Student",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -23,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
               child: ListTile(
                 leading: const Icon(Icons.email),
                 title: const Text("Email"),
-                subtitle: const Text("student@example.com"),
+                subtitle: Text(user?.email ?? "No email available"),
               ),
             ),
             Card(
@@ -34,6 +38,18 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20),
+        child: OutlinedButton.icon(
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+            if (!context.mounted) return;
+            context.go('/welcome');
+          },
+          icon: const Icon(Icons.logout),
+          label: const Text("Log out"),
         ),
       ),
     );

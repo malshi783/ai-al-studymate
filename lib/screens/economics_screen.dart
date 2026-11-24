@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'subject_detail_screen.dart';
+
 class EconomicsScreen extends StatelessWidget {
   const EconomicsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Economics")),
-      body: const Center(
-        child: Text(
-          "Economics",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+    return const SubjectDetailScreen(
+      subject: "Economics",
+      icon: Icons.trending_up,
+      color: Color(0xff4a0d1c),
+      progress: 0.72,
+      topics: ["Market structures", "National income", "Macroeconomics"],
     );
   }
 }
