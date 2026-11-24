@@ -78,7 +78,7 @@ class _TimetableScreenState extends State<TimetableScreen> {
                         // DAY DROPDOWN
                         // ------------------------------------------------
                         DropdownButtonFormField<String>(
-                          value: selectedDay,
+                          initialValue: selectedDay,
 
                           decoration: const InputDecoration(
                             labelText: "Day",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,12 +14,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       if (!mounted) return;
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+      context.go(
+        FirebaseAuth.instance.currentUser == null ? '/welcome' : '/home',
       );
     });
   }
@@ -31,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.menu_book, size: 70, color: Colors.green),
+            Icon(Icons.menu_book, size: 70, color: Color(0xff6d152a)),
             const Text(
               "AI A/L StudyMate",
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),

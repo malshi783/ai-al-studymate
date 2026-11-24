@@ -34,7 +34,7 @@ class _PastPapersScreenState extends State<PastPapersScreen> {
 
             // Subject dropdown
             DropdownButtonFormField<String>(
-              value: selectedSubject,
+              initialValue: selectedSubject,
 
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
@@ -68,7 +68,7 @@ class _PastPapersScreenState extends State<PastPapersScreen> {
             const SizedBox(height: 10),
             //year DropDown
             DropdownButtonFormField<String>(
-              value: selectedYear,
+              initialValue: selectedYear,
 
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
