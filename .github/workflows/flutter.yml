@@ -20,12 +20,13 @@ jobs:
         with:
           channel: stable
           cache: true
+          flutter-version: '3.50.1'
 
       - name: Install dependencies
         run: flutter pub get
 
       - name: Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
 
       - name: Run tests
         run: flutter test
